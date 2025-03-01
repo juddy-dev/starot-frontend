@@ -1,0 +1,2 @@
+# starot
+tarotista virtual
