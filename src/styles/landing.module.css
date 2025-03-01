@@ -1,0 +1,50 @@
+@keyframes moveStars {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100vh);
+    }
+  }
+
+  @keyframes starFall {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  .animateStarFall {
+    animation: starFall linear infinite;
+  }
+  
+  
+  .starryBackground {
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .starryBackground::before,
+  .starryBackground::after {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 150px 150px;
+    opacity: 0.7;
+    animation: moveStars 10s linear infinite;
+  }
+  
+  .starryBackground::after {
+    animation-duration: 15s; /* Capa de estrellas más lenta */
+    opacity: 0.5;
+  }
+  
