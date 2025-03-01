@@ -15,26 +15,30 @@ const ConstellationBackground = () => {
         let particles = [] as Particle[];
         let numParticles = getParticleCount();
 
+        const colors = ["#AECBFA", "#B0E0E6", "#FBF1E5"];
+
         class Particle {
             posX: number;
             posY: number;
             speedX: number;
             speedY: number;
             radius: number;
+            color: string;
 
             constructor() {
                 this.posX = Math.random() * width;
                 this.posY = Math.random() * height;
                 this.speedX = (Math.random() - 0.5) * 0.5;
                 this.speedY = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * (2) + 2;
+                this.radius = Math.random() * 2 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
             }
 
             draw() {
                 if (canvasContex2d) {
                     canvasContex2d.beginPath();
                     canvasContex2d.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
-                    canvasContex2d.fillStyle = "white";
+                    canvasContex2d.fillStyle = this.color;
                     canvasContex2d.fill();    
                 }
             }
