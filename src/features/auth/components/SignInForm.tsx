@@ -24,10 +24,40 @@ export default function SignUpForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" name="email" placeholder="Correo" onChange={handleChange} required />
-      <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required />
-      <button type="submit">Iniciar sesión</button>
+    <form
+      className="mt-6 flex flex-col space-y-4" 
+      onSubmit={handleSubmit}
+    >
+
+      <div className="flex flex-col">
+        <label htmlFor="email" className="text-white mb-1">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="tu@email.com"
+          required
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label htmlFor="password" className="text-white mb-1">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="******"
+          required
+          onChange={handleChange}
+        />
+      </div>
+
+      <button 
+        className="mt-6 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300"
+        type="submit"
+        >Iniciar sesión
+      </button>
     </form>
   );
 }

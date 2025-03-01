@@ -7,8 +7,8 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body>
-        <Main />
+      <body id="root">
+        <Main/>
         <NextScript />
       </body>
     </Html>
