@@ -7,7 +7,7 @@ const ConstellationBackground = () => {
     useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
-        const ctx = canvas.getContext("2d");
+        const canvasContex2d = canvas.getContext("2d");
 
         let width = (canvas.width = window.innerWidth);
         let height = (canvas.height = window.innerHeight);
@@ -16,35 +16,35 @@ const ConstellationBackground = () => {
         let numParticles = getParticleCount();
 
         class Particle {
-            x: number;
-            y: number;
-            vx: number;
-            vy: number;
+            posX: number;
+            posY: number;
+            speedX: number;
+            speedY: number;
             radius: number;
 
             constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = 2;
+                this.posX = Math.random() * width;
+                this.posY = Math.random() * height;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * (2) + 2;
             }
 
             draw() {
-                if (ctx) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = "white";
-                    ctx.fill();    
+                if (canvasContex2d) {
+                    canvasContex2d.beginPath();
+                    canvasContex2d.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
+                    canvasContex2d.fillStyle = "white";
+                    canvasContex2d.fill();    
                 }
             }
 
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
+                this.posX += this.speedX;
+                this.posY += this.speedY;
 
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if (this.posX < 0 || this.posX > width) this.speedX *= -1;
+                if (this.posY < 0 || this.posY > height) this.speedY *= -1;
             }
         }
 
@@ -64,24 +64,24 @@ const ConstellationBackground = () => {
         function drawLines() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
-                let dx = particles[i].x - particles[j].x;
-                let dy = particles[i].y - particles[j].y;
+                let dx = particles[i].posX - particles[j].posX;
+                let dy = particles[i].posY - particles[j].posY;
                 let distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 100 && ctx) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
+                if (distance < 100 && canvasContex2d) {
+                    canvasContex2d.beginPath();
+                    canvasContex2d.moveTo(particles[i].posX, particles[i].posY);
+                    canvasContex2d.lineTo(particles[j].posX, particles[j].posY);
+                    canvasContex2d.strokeStyle = "rgba(255, 255, 255, 0.2)";
+                    canvasContex2d.lineWidth = 1;
+                    canvasContex2d.stroke();
                 }
                 }
             }
         }
 
         function animate() {
-            ctx?.clearRect(0, 0, width, height);
+            canvasContex2d?.clearRect(0, 0, width, height);
             particles.forEach((p) => {
                 p.update();
                 p.draw();
