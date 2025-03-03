@@ -34,7 +34,6 @@ export default function SignUpForm() {
         <input
           type="email"
           id="email"
-          className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="tu@email.com"
           required
           onChange={handleChange}
@@ -46,7 +45,6 @@ export default function SignUpForm() {
         <input
           type="password"
           id="password"
-          className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="******"
           required
           onChange={handleChange}

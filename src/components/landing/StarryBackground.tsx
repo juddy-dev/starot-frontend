@@ -15,7 +15,7 @@ export default function StarryBackground() {
       posX: Math.random() * 100,
       posY: Math.random() * 100, 
       size: Math.random() * 3 + 1,
-      duration: Math.random() * 5 + 2,
+      duration: Math.random() * 10 + 5,
       color: colors[Math.floor(Math.random() * colors.length)]
     }));
 

@@ -1,6 +1,10 @@
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
-const ConstellationBackground = () => {
+interface ConstellationBackgroundProps {
+  children: ReactNode;
+}
+
+const ConstellationBackground = ({ children }: ConstellationBackgroundProps) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
 
@@ -15,7 +19,7 @@ const ConstellationBackground = () => {
         let particles = [] as Particle[];
         let numParticles = getParticleCount();
 
-        const colors = ["#AECBFA", "#B0E0E6", "#FBF1E5"];
+        const colors = ["#AECBFA69", "#B0E0E669", "#FBF1E569"];
 
         class Particle {
             posX: number;
@@ -53,7 +57,7 @@ const ConstellationBackground = () => {
         }
 
         function getParticleCount() {
-            if (width < 768) return 25;
+            if (width < 768) return 30;
             if (width < 1024) return 50;
             return 80;
         };
@@ -76,7 +80,7 @@ const ConstellationBackground = () => {
                     canvasContex2d.beginPath();
                     canvasContex2d.moveTo(particles[i].posX, particles[i].posY);
                     canvasContex2d.lineTo(particles[j].posX, particles[j].posY);
-                    canvasContex2d.strokeStyle = "rgba(255, 255, 255, 0.2)";
+                    canvasContex2d.strokeStyle = "rgba(255, 255, 255, 0.1)";
                     canvasContex2d.lineWidth = 1;
                     canvasContex2d.stroke();
                 }
@@ -113,11 +117,12 @@ const ConstellationBackground = () => {
     }, []);
 
   return (
-    <div className="mt-3 mb-3 md:m-0 p-6 relative w-full md:w-1/2 h-full md:h-auto flex items-center justify-center text-white">
-      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full md:h-auto" />
+    <div className="mt-3 mb-3 md:m-0 p-6 relative w-full h-full flex flex-col items-center justify-center text-white">
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
       <h1 className="relative md:text-xl font-bold z-10 p-3 rounded-lg">
         Estos datos nos ayudarán a conocer las estrellas cuando nacistes
       </h1>
+        {children}
     </div>
   );
 };

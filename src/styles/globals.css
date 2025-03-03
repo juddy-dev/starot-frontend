@@ -31,3 +31,9 @@ header {
   padding: 1rem;
   background-color: transparent;
 }
+
+@layer base {
+  input {
+    @apply border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[rgba(0,0,0,0.6)] backdrop-blur-sm;
+  }
+}
