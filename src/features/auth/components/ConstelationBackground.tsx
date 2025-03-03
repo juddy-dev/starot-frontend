@@ -117,11 +117,8 @@ const ConstellationBackground = ({ children }: ConstellationBackgroundProps) => 
     }, []);
 
   return (
-    <div className="mt-3 mb-3 md:m-0 p-6 relative w-full h-full flex flex-col items-center justify-center text-white">
+    <div className="mt-3 mb-3 md:m-0 p-6 relative w-full min-h-screen flex flex-col items-center justify-center text-white">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
-      <h1 className="relative md:text-xl font-bold z-10 p-3 rounded-lg">
-        Estos datos nos ayudarán a conocer las estrellas cuando nacistes
-      </h1>
         {children}
     </div>
   );
