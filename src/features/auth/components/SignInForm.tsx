@@ -26,7 +26,7 @@ export default function SignUpForm() {
 
   return (
     <form
-      className="mt-6 flex flex-col space-y-4" 
+      className="mt-6 flex flex-col space-y-4 min-w-full md:min-w-2xs" 
       onSubmit={handleSubmit}
     >
 

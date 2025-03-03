@@ -36,7 +36,6 @@ const GenericModal = ({ title, isOpenControl, onClose, children }: ModalProps) =
   }
 
   return (
-    <>
       <Modal 
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -52,7 +51,6 @@ const GenericModal = ({ title, isOpenControl, onClose, children }: ModalProps) =
         </div>
         
       </Modal>
-    </>
   );
 };
 
