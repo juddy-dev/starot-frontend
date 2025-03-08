@@ -4,10 +4,14 @@ import { confirmEmail, createUser, loginBySignUp } from '../authService';
 import { User } from '@/types/User';
 import GenericModal from '@/components/modal/GenericModal';
 import { useRouter } from 'next/router';
+import { useLoader } from '@/context/LoaderContext';
 
 export default function SignUpForm() {
+  const loader = useLoader();
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  
 
   const [formData, setFormData] = useState({ 
     email: '', password: '', confirmPassword: '', nickname: '', birthdate: '', 
@@ -41,6 +45,7 @@ export default function SignUpForm() {
       return;
     }
 
+    loader.setIsLoading(true);
     try {
       formData.emailHide = formData.email.replace(/(?<=^[A-Za-z0-9]{2}).*?(?=@)/, "***");
       const user = {
@@ -57,10 +62,13 @@ export default function SignUpForm() {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      loader.setIsLoading(false);
     }
   };
 
   const confirmUser = async (code: string) => {
+    loader.setIsLoading(true);
     try {
       const { nextStep } = await confirmEmail(formData.email, code);
       console.log(nextStep);
@@ -73,6 +81,7 @@ export default function SignUpForm() {
       }
     }catch(err) {
       console.log(err);
+      loader.setIsLoading(false);
     }
   }
 
