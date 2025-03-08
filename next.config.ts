@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // Deshabilita la optimización de imágenes (necesario para GitHub Pages)
   },
-  basePath: isProd ? '/starot' : '',
-  assetPrefix: isProd ? '/starot/' : '',
+  basePath: isProd ? '/starot-frontend' : '',
+  assetPrefix: isProd ? '/starot-frontend/' : '',
 };
 
 export default nextConfig;
